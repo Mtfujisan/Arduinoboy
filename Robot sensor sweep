@@ -1,0 +1,120 @@
+// Sweep
+// by BARRAGAN <http://barraganstudio.com> 
+// This example code is in the public domain.
+
+
+#include <Servo.h> 
+ 
+Servo myheadright;
+Servo myheadleft;
+Servo mywheelleft;
+Servo mywheelright;
+                // create servo object to control a servo 
+                // a maximum of eight servo objects can be created 
+ 
+int pos = 0;    // variable to store the servo position 
+ 
+
+int HRpin = 9;
+int HLpin = 6;
+int MWLpin = 10;
+int MWRpin = 11;
+ 
+ 
+void setup() 
+{ 
+  myheadright.attach(9);  // attaches the servo on pin 9 to the servo object 
+  myheadleft.attach(6);
+  mywheelleft.attach(10);
+  mywheelright.attach(11);
+  pinMode(5, INPUT);
+} 
+ 
+void loop() 
+{ 
+   StopWheels();
+ delay(5000);
+  if (digitalRead(5)==HIGH)
+{
+  TurnHead();
+  
+  Rotate(30);
+  delay(2000);
+  
+  Forward(100);
+  delay(3000);
+}
+}  
+  
+  /*
+ myheadmywheelleft.write(0);
+ delay(1000);
+  myheadmywheelright.write(180);
+ delay(1000); // waits 15ms for the servo to reach the position 
+ myheadmywheelleft.write(120);
+ delay(1000);
+ myheadmywheelright.write(0);
+ delay(1000);
+   
+
+  mywheelmywheelleft.write(0);
+ delay(900);
+  mywheelmywheelright.write(180);
+ delay(400); // waits 15ms for the servo to reach the position 
+ mywheelmywheelleft.write(90);
+ delay(400);
+ mywheelmywheelright.write(0);
+ delay(400);
+ */
+
+
+
+void Forward( int Speed)
+{
+  attachWheels();
+Speed = (int) ((Speed)/100.0 *90.0 + 90);
+mywheelleft.write(Speed);
+mywheelright.write(-Speed);
+}
+
+void Backward(int Speed)
+{
+  attachWheels();
+Speed = (int) ((Speed)/100.0 *90.0 + 90);
+mywheelleft.write(-Speed);
+mywheelright.write(Speed);
+}
+
+void Rotate ( int Speed)
+{
+  attachWheels();
+Speed = (int) ((Speed)/100.0 *90.0 + 90);
+mywheelleft.write(Speed);
+mywheelright.write(Speed);
+}
+
+void StopWheels ()
+{
+ mywheelleft.detach();
+ mywheelright.detach(); 
+  
+}
+
+void attachWheels()
+{
+    mywheelleft.attach(10);
+  mywheelright.attach(11);
+
+}
+
+void TurnHead()
+{
+  myheadleft.write(0);
+ delay(1000);
+  myheadright.write(180);
+ delay(1000); // waits 15ms for the servo to reach the position 
+ myheadleft.write(120);
+ delay(1000);
+ myheadright.write(0);
+ delay(1000);
+}
