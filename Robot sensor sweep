@@ -46,26 +46,7 @@ void loop()
 }
 }  
   
-  /*
- myheadmywheelleft.write(0);
- delay(1000);
-  myheadmywheelright.write(180);
- delay(1000); // waits 15ms for the servo to reach the position 
- myheadmywheelleft.write(120);
- delay(1000);
- myheadmywheelright.write(0);
- delay(1000);
-   
 
-  mywheelmywheelleft.write(0);
- delay(900);
-  mywheelmywheelright.write(180);
- delay(400); // waits 15ms for the servo to reach the position 
- mywheelmywheelleft.write(90);
- delay(400);
- mywheelmywheelright.write(0);
- delay(400);
- */
 
 
 
